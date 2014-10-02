@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="static/css/colorpicker.css" type="text/css" />
+
+    <title>LED Color Picker</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="static/js/colorpicker.js"></script>
+
+   
+</head>
+
+<body>
+
+
+<div id="colorpick" class = "color"> </div>  
+
+
+<form method=POST action="/">
+
+  <p>pick a LED color</p>
+  <input type="text"  id="colorbox" name="color" value="#ff0000">
+  
+  <div    id="send"><span>Send</span> </div>
+  <div id="result"> </div>
+</form>
+
+<script>
+$('#colorpick').ColorPicker({flat: true,
+onChange: function (hsb, hex, rgb) {
+		$("#colorbox").val('#' + hex)},
+});
+
+$(document).ready(function(){
+$("#send").click(function(){
+	$("#result" ).css("visibility", "hidden");
+	$("#send").css("cursor","wait");
+	$("#send span").css("cursor","wait");
+	var result = $.post("/",{color:$("#colorbox").val()});
+	$("#send").css("background-color","green");
+	$( "#result" ).css("background-color","#16e04c")
+	
+	result.done(function( data ) {
+		var content = $( data );
+		$( "#result" ).empty().append( "<span>"+data+"</span>" );
+		$("#result" ).css("visibility", "visible");
+		$("#send").css("background-color","#16e04c")
+		$("#send").css("cursor","pointer");
+		$("#send span").css("cursor","pointer")
+		if (data==="Failed"){
+			$( "#result" ).css("background-color","red");
+	}
+  });
+});
+});
+	
+	
+</script>
+
+</body>
+</html>
