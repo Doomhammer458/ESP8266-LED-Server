@@ -6,7 +6,7 @@ import os
 import random
 import socket
 def sendData(data):
-    TCP_IP = '192.168.1.6'
+    TCP_IP = '192.168.1.XX' #ip address of the esp8266
     TCP_PORT = 8266
     
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
