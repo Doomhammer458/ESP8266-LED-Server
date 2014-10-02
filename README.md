@@ -11,7 +11,7 @@ The ip address of your esp8266.
 
 to start, wire up the LED and the esp8266 (3.3V power and logic, use level shifters if using 5v Arduino) and then upload the sketch.
 
-To start the computer side you will run website.py.  You will need to have both python, and [Tornado](http://www.tornadoweb.org/en/stable/) installed for the python to run.
+To start the computer side you will run website.py.  You will need to have both python, and [Tornado](http://www.tornadoweb.org/en/stable/) installed for the web server to run.
 
 either run website.py from the IDE or on the command line: python website.py
 
